@@ -20,22 +20,22 @@ class GildedRose
     {
         foreach ($this->items as $item) {
             if ($item->name() != 'Aged Brie' and $item->name() != 'Backstage passes to a TAFKAL80ETC concert') {
-                if ($item->quality() > self::MIN_QUANTITY_VALUE) {
+                if ($this->hasPassedMinQuantityValue($item)) {
                     if ($item->name() != 'Sulfuras, Hand of Ragnaros') {
                         $item->decreaseQuality(1);
                     }
                 }
             } else {
-                if ($item->quality() < self::MAX_QUANTITY_VALUE) {
+                if ($this->hasNotReachedMaxQuantityVaue($item)) {
                     $item->increaseQuality(1);
                     if ($item->name() == 'Backstage passes to a TAFKAL80ETC concert') {
                         if ($item->sell_in() < self::MAX_BACKSTAGE_PASS_SELL_IN) {
-                            if ($item->quality() < self::MAX_QUANTITY_VALUE) {
+                            if ($this->hasNotReachedMaxQuantityVaue($item)) {
                                 $item->increaseQuality(1);
                             }
                         }
                         if ($item->sell_in() < self::MIN_BACKSTAGE_PASS_SELL_IN) {
-                            if ($item->quality() < self::MAX_QUANTITY_VALUE) {
+                            if ($this->hasNotReachedMaxQuantityVaue($item)) {
                                 $item->increaseQuality(1);
                             }
                         }
@@ -50,7 +50,7 @@ class GildedRose
             if ($item->sell_in() < self::MIN_SELL_IN_DAYS) {
                 if ($item->name() != 'Aged Brie') {
                     if ($item->name() != 'Backstage passes to a TAFKAL80ETC concert') {
-                        if ($item->quality() > self::MIN_QUANTITY_VALUE) {
+                        if ($this->hasPassedMinQuantityValue($item)) {
                             if ($item->name() != 'Sulfuras, Hand of Ragnaros') {
                                 $item->decreaseQuality(1);
                             }
@@ -59,11 +59,21 @@ class GildedRose
                         $item->decreaseQuality($item->quality());
                     }
                 } else {
-                    if ($item->quality() < self::MAX_QUANTITY_VALUE) {
+                    if ($this->hasNotReachedMaxQuantityVaue($item)) {
                         $item->increaseQuality(1);
                     }
                 }
             }
         }
+    }
+
+    private function hasPassedMinQuantityValue(Item $item): bool
+    {
+        return $item->quality() > self::MIN_QUANTITY_VALUE;
+    }
+
+    private function hasNotReachedMaxQuantityVaue(Item $item): bool
+    {
+        return $item->quality() < self::MAX_QUANTITY_VALUE;
     }
 }
