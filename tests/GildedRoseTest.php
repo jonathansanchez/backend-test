@@ -18,7 +18,7 @@ class GildedRoseTest extends TestCase
   		$gilded_rose = new GildedRose($items);
         $gilded_rose->update_quality();
 
-        $this->assertEquals(4, $items[0]->quality);
+        $this->assertEquals(4, $items[0]->quality());
   	}
 
     /**
@@ -31,7 +31,7 @@ class GildedRoseTest extends TestCase
   		$gilded_rose = new GildedRose($items);
         $gilded_rose->update_quality();
 
-  		$this->assertEquals(3, $items[0]->quality);
+  		$this->assertEquals(3, $items[0]->quality());
   	}
 
     /**
@@ -44,7 +44,7 @@ class GildedRoseTest extends TestCase
   		$gilded_rose = new GildedRose($items);
         $gilded_rose->update_quality();
 
-  		$this->assertEquals(0, $items[0]->quality);
+  		$this->assertEquals(0, $items[0]->quality());
   	}
 
     /**
@@ -57,7 +57,7 @@ class GildedRoseTest extends TestCase
         $gilded_rose = new GildedRose($items);
         $gilded_rose->update_quality();
 
-  		$this->assertEquals(7, $items[0]->quality);
+  		$this->assertEquals(7, $items[0]->quality());
   	}
 
     /**
@@ -70,7 +70,7 @@ class GildedRoseTest extends TestCase
         $gilded_rose = new GildedRose($items);
         $gilded_rose->update_quality();
 
-  		$this->assertEquals(50, $items[0]->quality);
+  		$this->assertEquals(50, $items[0]->quality());
   	}
 
     /**
@@ -83,8 +83,8 @@ class GildedRoseTest extends TestCase
         $gilded_rose = new GildedRose($items);
         $gilded_rose->update_quality();
 
-  		$this->assertEquals(10, $items[0]->sell_in);
-  		$this->assertEquals(10, $items[0]->quality);
+  		$this->assertEquals(10, $items[0]->sell_in());
+  		$this->assertEquals(10, $items[0]->quality());
   	}
 
     public static function backstageRules()
@@ -111,6 +111,6 @@ class GildedRoseTest extends TestCase
         $gilded_rose = new GildedRose($items);
         $gilded_rose->update_quality();
 
-  		$this->assertEquals($expected, $items[0]->quality);
+  		$this->assertEquals($expected, $items[0]->quality());
   	}
 }
