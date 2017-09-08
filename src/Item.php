@@ -24,4 +24,9 @@ class Item
     {
         return $this->sell_in;
     }
+
+    public function quality(): int
+    {
+        return $this->quality;
+    }
 }
