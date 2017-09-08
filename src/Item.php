@@ -25,8 +25,23 @@ class Item
         return $this->sell_in;
     }
 
+    public function decreaseSellIn(int $value): void
+    {
+        $this->sell_in = $this->sell_in - $value;
+    }
+
     public function quality(): int
     {
         return $this->quality;
+    }
+
+    public function increaseQuality(int $value): void
+    {
+        $this->quality = $this->quality + $value;
+    }
+
+    public function decreaseQuality(int $value): void
+    {
+        $this->quality = $this->quality - $value;
     }
 }
